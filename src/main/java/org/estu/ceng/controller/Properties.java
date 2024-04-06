@@ -1,13 +1,10 @@
-package org.estu.ceng;
+package org.estu.ceng.controller;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class Properties {
     private double orderingCost;
-    private double unitCost;
     private double penaltyCost;
-    private double interestRate;
-    private double leadTime;
     private double leadTimeDemand;
     private double standardDeviation;
     private double holdingCost;
@@ -17,20 +14,8 @@ public class Properties {
         return orderingCost;
     }
 
-    public double getUnitCost() {
-        return unitCost;
-    }
-
     public double getPenaltyCost() {
         return penaltyCost;
-    }
-
-    public double getInterestRate() {
-        return interestRate;
-    }
-
-    public double getLeadTime() {
-        return leadTime;
     }
 
     public double getLeadTimeDemand() {
@@ -61,16 +46,16 @@ public class Properties {
         orderingCost = scanner.nextDouble();
 
         System.out.println("Enter unit cost:");
-        unitCost = scanner.nextDouble();
+        double unitCost = scanner.nextDouble();
 
         System.out.println("Enter penalty cost:");
         penaltyCost = scanner.nextDouble();
 
         System.out.println("Enter interest rate:");
-        interestRate = scanner.nextDouble();
+        double interestRate = scanner.nextDouble();
 
         System.out.println("Enter lead time:");
-        leadTime = scanner.nextDouble();
+        double leadTime = scanner.nextDouble();
 
         System.out.println("Enter lead time demand:");
         leadTimeDemand = scanner.nextDouble();
@@ -78,7 +63,6 @@ public class Properties {
         System.out.println("Enter standard deviation:");
         standardDeviation = scanner.nextDouble();
 
-        // Recalculate dependent variables
         holdingCost = unitCost * interestRate;
         annualDemand = leadTimeDemand * 12 / leadTime;
     }

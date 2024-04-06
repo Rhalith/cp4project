@@ -1,9 +1,48 @@
-package org.estu.ceng;
+package org.estu.ceng.model;
+
+import org.estu.ceng.controller.Properties;
 
 public class Calculation {
 
     private final Properties properties;
     private final ZChart zChart;
+
+    public float getSafetyStock() {
+        return safetyStock;
+    }
+
+    public float getNoMetProportion() {
+        return noMetProportion;
+    }
+
+    public float getNoStockProportion() {
+        return noStockProportion;
+    }
+
+    public float getAverageTimeBetweenOrders() {
+        return averageTimeBetweenOrders;
+    }
+
+    public float getAveragePenaltyCost() {
+        return averagePenaltyCost;
+    }
+
+    public float getAverageOrderingCost() {
+        return averageOrderingCost;
+    }
+
+    public float getAverageHoldingCost() {
+        return averageHoldingCost;
+    }
+
+    public float getReorderPoint() {
+        return reorderPoint;
+    }
+
+    public float getOptimalLotSize() {
+        return optimalLotSize;
+    }
+
     private float optimalLotSize;
     private float reorderPoint;
     private float zValue; // z-score
@@ -80,7 +119,10 @@ public class Calculation {
 
     public void Calculate(){
         iterate();
+        calculateSafetyStock();
+        calculateAverageCosts();
         calculateAverageTime();
-        System.out.println("Average time between orders: " + averageTimeBetweenOrders);
+        calculateStockProportions();
+        calculateNotMetProportion();
     }
 }

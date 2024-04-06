@@ -1,4 +1,4 @@
-package org.estu.ceng;
+package org.estu.ceng.model;
 import org.apache.commons.math3.distribution.NormalDistribution;
 
 public class ZChart {
@@ -14,7 +14,6 @@ public class ZChart {
     }
 
     public double getLValue(double Z) {
-        double probability = 1 - normalDistribution.cumulativeProbability(Z);
-        return probability;
+        return 1 - normalDistribution.cumulativeProbability(Z);
     }
 }
