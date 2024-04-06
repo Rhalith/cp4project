@@ -23,11 +23,11 @@ public class Calculation {
     private void calculateOptimalLotSize(Boolean isIteration) {
         if(isIteration)
         {
-            optimalLotSize = (float) (2 * properties.getAnnualDemand() * (properties.getOrderingCost() + properties.getPenaltyCost() * properties.getStandardDeviation() * zChart.getLValue(zValue)) / properties.getHoldingCost());
+            optimalLotSize = (float) Math.sqrt(2 * properties.getAnnualDemand() * (properties.getOrderingCost() + properties.getPenaltyCost() * properties.getStandardDeviation() * zChart.getLValue(zValue)) / properties.getHoldingCost());
         }
         else
         {
-            optimalLotSize = (float) ((2 * properties.getAnnualDemand() * properties.getOrderingCost()) / properties.getHoldingCost());
+            optimalLotSize = (float) Math.sqrt((2 * properties.getAnnualDemand() * properties.getOrderingCost()) / properties.getHoldingCost());
         }
     }
 
@@ -40,9 +40,12 @@ public class Calculation {
     }
 
     private void iterate(){
-        float oldOptimalLotSize = 1;
+        calculateOptimalLotSize(false);
+        calculateZ();
+        calculateReorderPoint();
+        float oldOptimalLotSize = optimalLotSize;
         float newOptimalLotSize = 0;
-        float oldReorderPoint = 1;
+        float oldReorderPoint = reorderPoint;
         float newReorderPoint = 0;
         while (oldOptimalLotSize != newOptimalLotSize || oldReorderPoint != newReorderPoint) {
             oldOptimalLotSize = optimalLotSize;
