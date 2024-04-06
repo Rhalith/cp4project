@@ -13,6 +13,42 @@ public class Properties {
     private double holdingCost;
     private double annualDemand;
 
+    public double getOrderingCost() {
+        return orderingCost;
+    }
+
+    public double getUnitCost() {
+        return unitCost;
+    }
+
+    public double getPenaltyCost() {
+        return penaltyCost;
+    }
+
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public double getLeadTime() {
+        return leadTime;
+    }
+
+    public double getLeadTimeDemand() {
+        return leadTimeDemand;
+    }
+
+    public double getStandardDeviation() {
+        return standardDeviation;
+    }
+
+    public double getHoldingCost() {
+        return holdingCost;
+    }
+
+    public double getAnnualDemand() {
+        return annualDemand;
+    }
+
     public Properties(){
         getInput();
     }
