@@ -77,4 +77,10 @@ public class Calculation {
     private void calculateNotMetProportion(){
         noMetProportion = (float) (properties.getStandardDeviation() * zChart.getLValue(zValue) / optimalLotSize);
     }
+
+    public void Calculate(){
+        iterate();
+        calculateAverageTime();
+        System.out.println("Average time between orders: " + averageTimeBetweenOrders);
+    }
 }
