@@ -109,8 +109,8 @@ public class Calculation {
         averageTimeBetweenOrders = (float) (optimalLotSize / properties.getAnnualDemand());
     }
 
-    private void calculateStockProportions(){
-        noStockProportion = (float) (1 - (optimalLotSize * properties.getHoldingCost() / (properties.getAnnualDemand() * properties.getPenaltyCost())));
+    private void calculateNoStockProportions(){
+        noStockProportion = (float) (1 - ((optimalLotSize * properties.getHoldingCost() / (properties.getAnnualDemand() * properties.getPenaltyCost()))));
     }
 
     private void calculateNotMetProportion(){
@@ -122,7 +122,7 @@ public class Calculation {
         calculateSafetyStock();
         calculateAverageCosts();
         calculateAverageTime();
-        calculateStockProportions();
+        calculateNoStockProportions();
         calculateNotMetProportion();
     }
 }
