@@ -1,5 +1,7 @@
 package org.estu.ceng.model;
+
 import org.apache.commons.math3.distribution.NormalDistribution;
+import org.apache.commons.math3.analysis.solvers.BrentSolver;
 
 public class ZChart {
 
@@ -10,10 +12,27 @@ public class ZChart {
     }
 
     public double getZScore(double x) {
-        return normalDistribution.inverseCumulativeProbability(1-x);
+        return normalDistribution.inverseCumulativeProbability(1 - x);
     }
 
-    public double getLValue(double Z) {
-        return 1 - normalDistribution.cumulativeProbability(Z);
+    private double lvalue(double z) {
+        return dnorm(z) - z * pnorm(z, false);
+    }
+
+    private double dnorm(double x) {
+        return Math.exp(-(x * x) / 2) / Math.sqrt(2 * Math.PI);
+    }
+
+    private double pnorm(double x, boolean lowerTail) {
+        if (lowerTail) {
+            return normalDistribution.cumulativeProbability(x);
+        } else {
+            return normalDistribution.cumulativeProbability(-x);
+        }
+    }
+
+    public double getLValue(double y) {
+        BrentSolver solver = new BrentSolver();
+        return solver.solve(100, (x) -> lvalue(y) - x, -10, 10);
     }
 }
