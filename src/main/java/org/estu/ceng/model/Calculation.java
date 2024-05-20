@@ -110,11 +110,11 @@ public class Calculation {
     }
 
     private void calculateNoStockProportions(){
-        noStockProportion = (float) (1 - ((optimalLotSize * properties.getHoldingCost() / (properties.getAnnualDemand() * properties.getPenaltyCost()))));
+        noStockProportion = (float) (1 - (optimalLotSize * properties.getHoldingCost()) / (properties.getAnnualDemand() * properties.getPenaltyCost())) * 100;
     }
 
     private void calculateNotMetProportion(){
-        noMetProportion = (float) (properties.getStandardDeviation() * zChart.getLValue(zValue) / optimalLotSize);
+        noMetProportion = (float) (properties.getStandardDeviation() * zChart.getLValue(zValue) / optimalLotSize) * 100;
     }
 
     public void Calculate(){
